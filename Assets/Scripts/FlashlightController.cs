@@ -17,7 +17,7 @@ public class FlashlightController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             flashlight.enabled = !flashlight.enabled;
-            Debug.Log("flashlight toggled");
+            Console.Write("flashlight toggled");
         }
     }
 }
