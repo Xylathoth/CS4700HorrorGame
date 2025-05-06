@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour
         Round round = rounds[currentRoundIndex];
         Debug.Log($"Starting Round {currentRoundIndex + 1}: {round.roundName}");
 
-        // Destroy old consumable if any
+        // destroy old consumable
         if (currentConsumable != null)
         {
             Destroy(currentConsumable);
         }
 
-        // Spawn at the specific spawn point for this round
+        // spawn at the specific spawn point for this round
         if (round.spawnPoint == null)
         {
             Debug.LogError($"No spawn point set for round {currentRoundIndex + 1}!");
@@ -70,17 +70,17 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Consumable consumed!");
 
-        // Remove previous effect
+        // remove previous effect
         if (currentEffect != null)
         {
             currentEffect.RemoveEffect(playerController, mouseLook);
         }
 
-        // Apply and track new effect
+        // apply and track new effect
         currentEffect = newEffect;
         Debug.Log("New effect applied!");
 
-        // Start next round
+        // start next round
         StartNextRound();
     }
 }

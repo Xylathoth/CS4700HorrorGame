@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LSD : BaseConsumable
 {
-    public float reducedFOV = 30f; // Desired FOV (default is ~60)
+    public float reducedFOV = 30f; // desired FOV
     private float originalFOV;
     private Camera playerCam;
 
@@ -20,6 +20,7 @@ public class LSD : BaseConsumable
         {
             Debug.LogWarning("Camera not found on MouseLook object!");
         }
+        UIManager.Instance.ShowEffectMessage("Round 3\r\nYou took LSD!");
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)
