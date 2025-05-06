@@ -6,8 +6,7 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
     public float mouseSensitivity = 100f;
     public Boolean isInverted;
-    float mouseX;
-    float mouseY;
+    public Boolean isFlipped;
 
     float xRotation = 0f;
 
@@ -16,6 +15,7 @@ public class MouseLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         isInverted = false;
+        isFlipped = false;
     }
 
     void Update()
@@ -28,17 +28,6 @@ public class MouseLook : MonoBehaviour
         {
             NormalMovement();
         }
-
-
-
-        //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        //xRotation -= mouseY;
-        //xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        //playerBody.Rotate(Vector3.up * mouseX);
     }
 
     void NormalMovement()
@@ -48,7 +37,15 @@ public class MouseLook : MonoBehaviour
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+
+        //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        Quaternion baseRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        if (isFlipped)
+        {
+            baseRotation *= Quaternion.Euler(0, 0, 180); // flip upside down
+        }
+        transform.localRotation = baseRotation;
 
         playerBody.Rotate(Vector3.up * mouseX);
     }
@@ -60,7 +57,16 @@ public class MouseLook : MonoBehaviour
 
         xRotation += mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        Quaternion baseRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        if (isFlipped)
+        {
+            baseRotation *= Quaternion.Euler(0, 0, 180); // flip upside down
+        }
+        transform.localRotation = baseRotation;
+
 
         playerBody.Rotate(Vector3.down * mouseX);
     }
