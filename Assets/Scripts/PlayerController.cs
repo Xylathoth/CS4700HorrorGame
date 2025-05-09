@@ -18,10 +18,22 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
 
+    // sound fx
+    private AudioSource walkAudioSource;
+    public AudioClip walkSFX;
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         isInverted = false;
+
+        // setup walking audio
+        walkAudioSource = gameObject.AddComponent<AudioSource>();
+        walkAudioSource.clip = walkSFX;
+        walkAudioSource.loop = true;
+        walkAudioSource.playOnAwake = false;
+        walkAudioSource.spatialBlend = 0f; // 2D sound
     }
 
     void Update()
@@ -43,7 +55,7 @@ public class PlayerController : MonoBehaviour
         }
 
         ApplyGravityAndJump();
-
+        HandleWalkingAudio();
     }
 
 
@@ -92,5 +104,27 @@ public class PlayerController : MonoBehaviour
         }
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void HandleWalkingAudio()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        bool isMoving = Mathf.Abs(x) > 0.1f || Mathf.Abs(z) > 0.1f;
+
+        if (isGrounded && isMoving)
+        {
+            if (!walkAudioSource.isPlaying)
+            {
+                walkAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (walkAudioSource.isPlaying)
+            {
+                walkAudioSource.Stop();
+            }
+        }
     }
 }

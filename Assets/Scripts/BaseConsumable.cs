@@ -16,6 +16,7 @@ public abstract class BaseConsumable : MonoBehaviour, IConsumableEffect
     {
         if (playerInRange)
         {
+            AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.roundStartSFX);
             ApplyEffect(playerController, mouseLook);
 
             if (gameManager != null)
