@@ -5,13 +5,31 @@ public class MouseLook : MonoBehaviour
 {
     public Transform playerBody;
     public float mouseSensitivity = 100f;
+    float xRotation = 0f;
+
+    // for inverted and flipped camera effects
     public Boolean isInverted;
     public Boolean isFlipped;
+
+    // for camera shake effect
     public bool isJittery = false;
     public float jitterStrength = 2f;
 
+    // for dizzy effect
+    public bool isDizzy = false;
+    public float dizzyTiltStrength = 10f; // degrees
+    public float dizzyTiltSpeed = 2f;     // speed of sway
+    private float dizzyTime = 0f;         // internal timer
 
-    float xRotation = 0f;
+    // for jitter and random snapping effect
+    public bool isSnapping = false;
+    public float snapIntervalMin = 1.5f;
+    public float snapIntervalMax = 4f;
+    public float snapAngleRange = 90f;
+
+    [HideInInspector] public float snapTimer = 0f;
+    [HideInInspector] public float nextSnapTime = 0f;
+
 
     void Start()
     {
@@ -19,6 +37,7 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         isInverted = false;
         isFlipped = false;
+
     }
 
     void Update()
@@ -31,6 +50,38 @@ public class MouseLook : MonoBehaviour
         {
             NormalMovement();
         }
+
+        if (isDizzy)
+        {
+            dizzyTime += Time.deltaTime * dizzyTiltSpeed;
+            float zTilt = Mathf.Sin(dizzyTime) * dizzyTiltStrength;
+            transform.localRotation *= Quaternion.Euler(0f, 0f, zTilt); // apply Z-axis tilt to camera
+        }
+
+
+        if (isSnapping)
+        {
+            snapTimer += Time.deltaTime;
+
+            if (snapTimer >= nextSnapTime)
+            {
+                // random snap
+                float yawSnap = UnityEngine.Random.Range(-snapAngleRange, snapAngleRange);
+                float pitchSnap = UnityEngine.Random.Range(-10f, 10f); // small pitch change
+
+                xRotation += pitchSnap;
+                xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+                playerBody.Rotate(Vector3.up * yawSnap);
+
+                // reset timer
+                snapTimer = 0f;
+                nextSnapTime = UnityEngine.Random.Range(snapIntervalMin, snapIntervalMax);
+
+                Debug.Log($"Camera snap applied: Yaw={yawSnap}, Pitch={pitchSnap}");
+            }
+        }
+
     }
 
     void NormalMovement()

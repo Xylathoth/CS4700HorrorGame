@@ -83,91 +83,31 @@ public class GameManager : MonoBehaviour
         // start next round
         StartNextRound();
     }
+
+
+    public void EndGame()
+    {
+        Debug.Log("Game Over. You win!");
+
+        // show a UI win message
+        UIManager.Instance.ShowEffectMessage("You Win!");
+
+        // disable player movement / look
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var controller = player.GetComponent<PlayerController>();
+            if (controller != null) controller.enabled = false;
+
+            var look = player.GetComponentInChildren<MouseLook>();
+            if (look != null) look.enabled = false;
+        }
+
+        // freeze time
+        // Time.timeScale = 0f;
+    }
+
 }
 
 
 
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class GameManager : MonoBehaviour
-//{
-//    [System.Serializable]
-//    public class Round
-//    {
-//        public string roundName;
-//        public GameObject consumablePrefab;  // specific prefab/consumable for this round
-//    }
-
-//    public List<Round> rounds;
-//    public Transform[] spawnPoints; // spawn locations for each drug
-
-//    private int currentRoundIndex = -1; // start before first round
-//    private GameObject currentConsumable;
-//    private IConsumableEffect currentEffect; // currently active effect
-
-//    private PlayerController playerController;
-//    private MouseLook mouseLook;
-
-//    void Start()
-//    {
-//        GameObject player = GameObject.FindGameObjectWithTag("Player");
-//        playerController = player.GetComponent<PlayerController>();
-//        mouseLook = player.GetComponentInChildren<MouseLook>();
-
-//        StartNextRound();
-//    }
-
-//    public void StartNextRound()
-//    {
-//        currentRoundIndex++;
-
-//        if (currentRoundIndex >= rounds.Count)
-//        {
-//            Debug.Log("All rounds completed!");
-//            return;
-//        }
-
-//        Round round = rounds[currentRoundIndex];
-//        Debug.Log($"Starting Round {currentRoundIndex + 1}: {round.roundName}");
-
-//        // Clean up any leftover consumable
-//        if (currentConsumable != null)
-//        {
-//            Destroy(currentConsumable);
-//        }
-
-//        // Pick random spawn point
-//        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-//        // Spawn the round's specific consumable
-//        currentConsumable = Instantiate(round.consumablePrefab, spawnPoint.position, spawnPoint.rotation);
-
-//        // Register the GameManager to the consumable
-//        var consumableScript = currentConsumable.GetComponent<BaseConsumable>();
-//        if (consumableScript != null)
-//        {
-//            consumableScript.Initialize(this);
-//        }
-//    }
-
-//    // Called when a consumable is eaten
-//    public void OnConsumableConsumed(IConsumableEffect newEffect)
-//    {
-//        Debug.Log("Consumable consumed!");
-
-//        // Remove previous effect if any
-//        if (currentEffect != null)
-//        {
-//            currentEffect.RemoveEffect(playerController, mouseLook);
-//        }
-
-//        // Apply and store new effect
-//        currentEffect = newEffect;
-
-//        Debug.Log("New effect applied!");
-
-//        // Start next round
-//        StartNextRound();
-//    }
-//}

@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 1.5f;
     public Boolean isInverted;
 
+    // for dizzy effect
+    public bool isDrifting = false;
+    public float driftStrength = 1.0f;
+    private float driftTime = 0f;
+
+
     private Vector3 velocity;
     private bool isGrounded;
 
@@ -47,6 +53,16 @@ public class PlayerController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
+
+        // for dizzy effect
+        if (isDrifting)
+        {
+            driftTime += Time.deltaTime * 2f; // speed of sway
+            float driftOffset = Mathf.Sin(driftTime) * driftStrength;
+            move += transform.right * driftOffset;
+        }
+
+
         controller.Move(move * speed * Time.deltaTime);
     }
 
