@@ -8,12 +8,12 @@ public class Marijuana : BaseConsumable
     {
         UIManager.Instance.ShowEffectMessage("Round 2\r\nYou took Marijuana!");
         player.speed *= boostMultiplier;
-        Debug.Log("Speed boost applied!");
+        Debug.Log("slow applied!");
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)
     {
         player.speed /= boostMultiplier;
-        Debug.Log("Speed boost removed!");
+        Debug.Log("slow removed!");
     }
 }

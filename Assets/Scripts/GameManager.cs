@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
     private MouseLook mouseLook;
 
+    public GameObject forestBarrier;
+
     void Start()
     {
         // Get player refs at start
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
 
         Round round = rounds[currentRoundIndex];
         Debug.Log($"Starting Round {currentRoundIndex + 1}: {round.roundName}");
+        HandleRoundEvents(currentRoundIndex);   // initiate round-specific logic
 
         // destroy old consumable
         if (currentConsumable != null)
@@ -106,6 +109,30 @@ public class GameManager : MonoBehaviour
         // freeze time
         // Time.timeScale = 0f;
     }
+
+
+    private void HandleRoundEvents(int roundIndex)
+    {
+        switch (roundIndex)
+        {
+            case 5:
+                // after consuming shrooms (round 5), open forest area
+                if (forestBarrier != null)
+                {
+                    forestBarrier.SetActive(false);
+                    Debug.Log("Forest barrier removed.");
+                }
+                break;
+
+            //case 6:
+            //    // example future case: spawn monsters
+            //    //SpawnMonsters();
+            //    break;
+
+             // add more cases for other round events
+        }
+    }
+
 
 }
 
