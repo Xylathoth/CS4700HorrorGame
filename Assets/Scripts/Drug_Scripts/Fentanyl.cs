@@ -4,7 +4,7 @@ public class CameraFlipConsumable : BaseConsumable
 {
     public override void ApplyEffect(PlayerController player, MouseLook look)
     {
-        UIManager.Instance.ShowEffectMessage("Round 4\r\nYou took Fentanyl!");
+        UIManager.Instance.ShowEffectMessage("Round 7\r\nYou took Fentanyl!");
         look.isFlipped = true;
         Debug.Log("Camera flip applied (upside down).");
     }

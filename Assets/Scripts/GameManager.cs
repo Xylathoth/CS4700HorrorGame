@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
     {
         switch (roundIndex)
         {
-            case 5:
+            case 4:
                 // after consuming shrooms (round 5), open forest area
                 if (forestBarrier != null)
                 {
