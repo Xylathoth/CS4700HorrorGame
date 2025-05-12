@@ -16,6 +16,7 @@ public class FlashlightController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.flashlightClickSFX);
             flashlight.enabled = !flashlight.enabled;
             Console.Write("flashlight toggled");
         }
