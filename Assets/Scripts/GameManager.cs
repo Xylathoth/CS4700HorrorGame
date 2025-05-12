@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     private MouseLook mouseLook;
 
     public GameObject forestBarrier;
+    //public GameObject forestMonsterPrefab;
+    //public Transform forestMonsterSpawnPoint;
+
 
     void Start()
     {
@@ -122,6 +125,14 @@ public class GameManager : MonoBehaviour
                     forestBarrier.SetActive(false);
                     Debug.Log("Forest barrier removed.");
                 }
+
+                // Spawn forest monster
+                //if (forestMonsterPrefab != null && forestMonsterSpawnPoint != null)
+                //{
+                //    Instantiate(forestMonsterPrefab, forestMonsterSpawnPoint.position, forestMonsterSpawnPoint.rotation);
+                //    Debug.Log("Forest monster spawned.");
+                //}
+
                 break;
 
             //case 6:

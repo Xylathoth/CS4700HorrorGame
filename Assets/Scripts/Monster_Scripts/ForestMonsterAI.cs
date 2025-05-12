@@ -6,6 +6,11 @@ public class ForestMonsterAI : MonoBehaviour
     public Transform[] patrolPoints;
     public float sightRange = 10f;
     public float chaseDuration = 5f;
+
+    public AudioClip idleClip;
+    public AudioClip chaseClip;
+    private AudioSource audioSource;
+    private bool isPlayingChaseClip = false;
     private Animator animator;
 
     private NavMeshAgent agent;
@@ -24,7 +29,11 @@ public class ForestMonsterAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        PlayIdleAudio();
         GoToNextPatrolPoint();
     }
 
@@ -35,6 +44,9 @@ public class ForestMonsterAI : MonoBehaviour
             chaseTimer += Time.deltaTime;
             agent.SetDestination(player.position);
 
+            if (!isPlayingChaseClip)
+                PlayChaseAudio();   
+
             if (chaseTimer >= chaseDuration)
             {
                 isChasing = false;
@@ -43,6 +55,8 @@ public class ForestMonsterAI : MonoBehaviour
 
                 animator.SetBool("IsRunning", false);
                 animator.SetFloat("Speed", agent.speed);
+
+                PlayIdleAudio();
             }
         }
         else
@@ -123,5 +137,22 @@ public class ForestMonsterAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         return distanceToPlayer <= sightRange;
+    }
+
+
+    void PlayIdleAudio()
+    {
+        isPlayingChaseClip = false;
+        audioSource.clip = idleClip;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
+    void PlayChaseAudio()
+    {
+        isPlayingChaseClip = true;
+        audioSource.clip = chaseClip;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 }
