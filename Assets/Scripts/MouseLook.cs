@@ -78,7 +78,7 @@ public class MouseLook : MonoBehaviour
                 snapTimer = 0f;
                 nextSnapTime = UnityEngine.Random.Range(snapIntervalMin, snapIntervalMax);
 
-                Debug.Log($"Camera snap applied: Yaw={yawSnap}, Pitch={pitchSnap}");
+                Debug.Log($"Camera snap applied");
             }
         }
 
