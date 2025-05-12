@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: 18e93cd562dad0d4790bc079248ed680
-AssetOrigin:
-  serializedVersion: 1
-  productId: 188552
-  packageName: Monster Mutant 7
-  packageVersion: 1.0
-  assetPath: Assets/MonsterMutant 7/Animations/MutantMonster2@walk3.fbx
-  uploadId: 417307
+guid: 1591c4599394c754d9da2a477656f626
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -1104,7 +1097,7 @@ ModelImporter:
     second: right_small_spike4
   - first:
       74: 7400000
-    second: walk3
+    second: Take 001
   - first:
       95: 9500000
     second: //RootNode
@@ -1136,18 +1129,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk3
+      name: Take 001
       takeName: Take 001
       internalID: 7400000
       firstFrame: 1
-      lastFrame: 32
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

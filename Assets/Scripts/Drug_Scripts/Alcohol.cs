@@ -17,7 +17,7 @@ public class Alcohol : BaseConsumable
         player.driftStrength = 0.5f;
 
         Debug.Log("Dizzy effect applied!");
-        UIManager.Instance.ShowEffectMessage("Round 6\r\nYou drank Alcohol!");
+        UIManager.Instance.ShowEffectMessage("Round 4\r\nYou drank Alcohol!");
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)
