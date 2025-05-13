@@ -122,6 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jitterAmount: 20
-  snapAngleRange: 120
+  snapAngleRange: 90
   snapIntervalMin: 3
   snapIntervalMax: 5
