@@ -8,7 +8,7 @@ public class AttackPlayer : MonoBehaviour
         {
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
 
-            playerHealth.health--
+            playerHealth.health--;
         }
     }
 }
