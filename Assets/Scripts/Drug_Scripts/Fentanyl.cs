@@ -7,6 +7,15 @@ public class CameraFlipConsumable : BaseConsumable
         UIManager.Instance.ShowEffectMessage("Round 7\r\nYou took Fentanyl!");
         look.isFlipped = true;
         Debug.Log("Camera flip applied (upside down).");
+
+        MonsterAI monster = FindObjectOfType<MonsterAI>();
+        if (monster != null)
+        {
+            monster.moveSpeed = 7f;
+            monster.respawnDelay = 0f;
+        }
+
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

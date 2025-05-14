@@ -21,6 +21,14 @@ public class LSD : BaseConsumable
             Debug.LogWarning("Camera not found on MouseLook object!");
         }
         UIManager.Instance.ShowEffectMessage("Round 3\r\nYou took LSD!");
+
+        MonsterAI monster = FindObjectOfType<MonsterAI>();
+        if (monster != null)
+        {
+            monster.moveSpeed = 4f;
+            monster.respawnDelay = 3f;
+        }
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - PathTrees
   - GameManager
+  - ExtraMonster
+  tags:
+  - PathTrees
+  - GameManager
   layers:
   - Default
   - TransparentFX
