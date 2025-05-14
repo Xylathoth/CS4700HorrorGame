@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fafa7c459ebeee34c9db42956b153135
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 26360
+  packageName: Chair and Armchair
+  packageVersion: 1
+  assetPath: Assets/Chair/Materials/ch1_dif.mat
+  uploadId: 43932

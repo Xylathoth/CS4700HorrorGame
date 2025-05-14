@@ -30,6 +30,7 @@ public class Shrooms : BaseConsumable
             monster.moveSpeed = 5f;
             monster.respawnDelay = 999f;
         }
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

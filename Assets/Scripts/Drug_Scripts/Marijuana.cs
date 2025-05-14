@@ -18,8 +18,6 @@ public class Marijuana : BaseConsumable
         }
 
 
-
-
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

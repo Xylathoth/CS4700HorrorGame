@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AttackPlayer : MonoBehaviour
 {
+
     public int damage = 1;
 
     private void OnTriggerEnter(Collider other)
@@ -18,5 +19,7 @@ public class AttackPlayer : MonoBehaviour
 
         playerHealth.health -= damage;
         Debug.Log($"AttackPlayer: dealt {damage} damage, player health now {playerHealth.health}");
+
+
     }
 }

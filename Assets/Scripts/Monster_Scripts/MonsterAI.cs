@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MonsterAI : MonoBehaviour
 {
+
     public Transform player;
     public Light flashlight;
     public float moveSpeed = 2f;
@@ -21,11 +22,13 @@ public class MonsterAI : MonoBehaviour
         animator = GetComponent<Animator>();
         startPosition = transform.position;
         monsterLayerMask = LayerMask.GetMask("Monster");
+
     }
 
     void Update()
     {
         if (isHidden) return;
+
 
         // chase & face the player
         Vector3 dir = (player.position - transform.position).normalized;
@@ -73,4 +76,5 @@ public class MonsterAI : MonoBehaviour
         foreach (var c in colliders) c.enabled = true;
         isHidden = false;
     }
+
 }

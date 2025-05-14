@@ -15,6 +15,7 @@ public class MethPack : BaseConsumable
             monster.moveSpeed = 6f;
             monster.respawnDelay = 2f;
         }
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

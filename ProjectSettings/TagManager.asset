@@ -3,14 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-<<<<<<< Updated upstream
-  tags: []
-=======
   tags:
   - PathTrees
   - GameManager
   - ExtraMonster
->>>>>>> Stashed changes
+  tags:
+  - PathTrees
+  - GameManager
   layers:
   - Default
   - TransparentFX
@@ -18,13 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< Updated upstream
-  - 
-  - 
-=======
   - Forest Floor
-  - ExtraMonster
->>>>>>> Stashed changes
+  - 
   - 
   - 
   - 

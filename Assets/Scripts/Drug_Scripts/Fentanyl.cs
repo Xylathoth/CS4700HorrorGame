@@ -14,6 +14,8 @@ public class CameraFlipConsumable : BaseConsumable
             monster.moveSpeed = 7f;
             monster.respawnDelay = 0f;
         }
+
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

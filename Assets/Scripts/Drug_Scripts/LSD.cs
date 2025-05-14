@@ -28,6 +28,7 @@ public class LSD : BaseConsumable
             monster.moveSpeed = 4f;
             monster.respawnDelay = 3f;
         }
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)
