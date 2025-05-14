@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     private MouseLook mouseLook;
 
     public GameObject forestBarrier;
+    //public GameObject forestMonsterPrefab;
+    //public Transform forestMonsterSpawnPoint;
+
+    public GameObject abandonedBouseBarrier;
+
 
     void Start()
     {
@@ -115,13 +120,31 @@ public class GameManager : MonoBehaviour
     {
         switch (roundIndex)
         {
-            case 5:
+            case 4:
                 // after consuming shrooms (round 5), open forest area
                 if (forestBarrier != null)
                 {
                     forestBarrier.SetActive(false);
                     Debug.Log("Forest barrier removed.");
                 }
+
+                // Spawn forest monster
+                //if (forestMonsterPrefab != null && forestMonsterSpawnPoint != null)
+                //{
+                //    Instantiate(forestMonsterPrefab, forestMonsterSpawnPoint.position, forestMonsterSpawnPoint.rotation);
+                //    Debug.Log("Forest monster spawned.");
+                //}
+
+                break;
+
+            case 5:
+                // after consuming meth (round 6), open abandoned house
+                if (abandonedBouseBarrier != null)
+                {
+                    abandonedBouseBarrier.SetActive(false);
+                    Debug.Log("Abandoned house barrier removed.");
+                }
+
                 break;
 
             //case 6:
