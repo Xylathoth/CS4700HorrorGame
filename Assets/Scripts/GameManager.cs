@@ -34,19 +34,9 @@ public class GameManager : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         mouseLook = player.GetComponentInChildren<MouseLook>();
 
-        StartNextRound();
-        StartCoroutine(StartMessages());
-    }
-
-    IEnumerator StartMessages()
-    {
-        Debug.Log("Displaying starting messages");
-
-        UIManager.Instance.ShowEffectMessage("Look for drugs.");
-        yield return new WaitForSeconds(UIManager.Instance.messageDisplayTime);
-        UIManager.Instance.ShowEffectMessage("Survive.");
-        yield return new WaitForSeconds(UIManager.Instance.messageDisplayTime);
-        UIManager.Instance.ShowEffectMessage("Don't overdose.");
+        // Don't allow player control initially
+        playerController.enabled = false;
+        mouseLook.enabled = false;
     }
 
     public void StartNextRound()
