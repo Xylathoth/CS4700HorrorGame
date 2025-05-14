@@ -23,6 +23,14 @@ public class Shrooms : BaseConsumable
         look.nextSnapTime = Random.Range(snapIntervalMin, snapIntervalMax);
 
         Debug.Log($"Jittery mouse look applied! Jitter strength: {jitterAmount}");
+
+        MonsterAI monster = FindObjectOfType<MonsterAI>();
+        if (monster != null)
+        {
+            monster.moveSpeed = 5f;
+            monster.respawnDelay = 999f;
+        }
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

@@ -8,6 +8,14 @@ public class MethPack : BaseConsumable
         player.isInverted = true;
         look.isInverted = true;
         Debug.Log("Invert effect applied!");
+
+        MonsterAI monster = FindObjectOfType<MonsterAI>();
+        if (monster != null)
+        {
+            monster.moveSpeed = 6f;
+            monster.respawnDelay = 2f;
+        }
+
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)
