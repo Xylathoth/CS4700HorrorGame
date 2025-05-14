@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +27,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject abandonedBouseBarrier;
 
-
     void Start()
     {
         // Get player refs at start
@@ -35,6 +35,18 @@ public class GameManager : MonoBehaviour
         mouseLook = player.GetComponentInChildren<MouseLook>();
 
         StartNextRound();
+        StartCoroutine(StartMessages());
+    }
+
+    IEnumerator StartMessages()
+    {
+        Debug.Log("Displaying starting messages");
+
+        UIManager.Instance.ShowEffectMessage("Look for drugs.");
+        yield return new WaitForSeconds(UIManager.Instance.messageDisplayTime);
+        UIManager.Instance.ShowEffectMessage("Survive.");
+        yield return new WaitForSeconds(UIManager.Instance.messageDisplayTime);
+        UIManager.Instance.ShowEffectMessage("Don't overdose.");
     }
 
     public void StartNextRound()
@@ -92,6 +104,24 @@ public class GameManager : MonoBehaviour
         StartNextRound();
     }
 
+    public void DeadPlayer()
+    {
+        Debug.Log("Game Over. Died from overdose.");
+
+        // show a UI win message
+        UIManager.Instance.ShowEffectMessage("RIP. You died from overdose.");
+
+        // disable player movement / look
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var controller = player.GetComponent<PlayerController>();
+            if (controller != null) controller.enabled = false;
+
+            var look = player.GetComponentInChildren<MouseLook>();
+            if (look != null) look.enabled = false;
+        }
+    }
 
     public void EndGame()
     {
@@ -147,17 +177,14 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            //case 6:
-            //    // example future case: spawn monsters
-            //    //SpawnMonsters();
-            //    break;
+                //case 6:
+                //    // example future case: spawn monsters
+                //    //SpawnMonsters();
+                //    break;
 
-             // add more cases for other round events
+                // add more cases for other round events
         }
     }
 
 
 }
-
-
-
