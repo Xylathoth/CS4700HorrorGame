@@ -10720,10 +10720,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RegularMonster2
       objectReference: {fileID: 0}
-    - target: {fileID: 6816318530692158001, guid: b5bb35213c1cbd24d84e17552f7d59e4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11938,6 +11934,10 @@ PrefabInstance:
       propertyPath: flashlight
       value: 
       objectReference: {fileID: 1001583532}
+    - target: {fileID: 1093226685300881303, guid: b5bb35213c1cbd24d84e17552f7d59e4, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6816318530692158001, guid: b5bb35213c1cbd24d84e17552f7d59e4, type: 3}
       propertyPath: m_Name
       value: RegularMonster3
@@ -21482,7 +21482,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -32162,7 +32162,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -50986,6 +50986,10 @@ PrefabInstance:
       propertyPath: flashlight
       value: 
       objectReference: {fileID: 1001583532}
+    - target: {fileID: 1093226685300881303, guid: b5bb35213c1cbd24d84e17552f7d59e4, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6816318530692158001, guid: b5bb35213c1cbd24d84e17552f7d59e4, type: 3}
       propertyPath: m_Name
       value: RegularMonster4
@@ -69067,6 +69071,10 @@ PrefabInstance:
       propertyPath: flashlight
       value: 
       objectReference: {fileID: 1001583532}
+    - target: {fileID: 1093226685300881303, guid: b5bb35213c1cbd24d84e17552f7d59e4, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6816318530692158001, guid: b5bb35213c1cbd24d84e17552f7d59e4, type: 3}
       propertyPath: m_Name
       value: RegularMonster

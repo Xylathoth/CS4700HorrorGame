@@ -58,9 +58,9 @@ public class DrunkQuest : MonoBehaviour
 
         UIManager.Instance.ShowEffectMessage("I need to you to get me something.");
         yield return new WaitForSeconds(UIManager.Instance.messageDisplayTime);
-        UIManager.Instance.ShowEffectMessage("Go behind the gas station and get me an empty bottle.");
+        UIManager.Instance.ShowEffectMessage("Grab that bottle behind the gas station.");
         yield return new WaitForSeconds(UIManager.Instance.messageDisplayTime);
-        UIManager.Instance.ShowEffectMessage("Come back and I'll fill you up with some moonshine.");
+        UIManager.Instance.ShowEffectMessage("I'll fill it up with some moonshine for you.");
     }
 
     // Quest complete dialogue
