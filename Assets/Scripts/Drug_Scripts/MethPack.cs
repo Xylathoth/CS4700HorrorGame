@@ -9,12 +9,6 @@ public class MethPack : BaseConsumable
         look.isInverted = true;
         Debug.Log("Invert effect applied!");
 
-        //MonsterAI monster = FindObjectOfType<MonsterAI>();
-        //if (monster != null)
-        //{
-        //    monster.moveSpeed = 7f;
-        //    monster.respawnDelay = 999f;
-        //}
 
         MonsterAI[] monsters = FindObjectsOfType<MonsterAI>();
         foreach (MonsterAI monster in monsters)

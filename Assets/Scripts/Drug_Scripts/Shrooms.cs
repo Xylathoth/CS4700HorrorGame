@@ -24,12 +24,6 @@ public class Shrooms : BaseConsumable
 
         Debug.Log($"Jittery mouse look applied! Jitter strength: {jitterAmount}");
 
-        //MonsterAI monster = FindObjectOfType<MonsterAI>();
-        //if (monster != null)
-        //{
-        //    monster.moveSpeed = 5f;
-        //    monster.respawnDelay = 999f;
-        //}
 
         MonsterAI[] monsters = FindObjectsOfType<MonsterAI>();
         foreach (MonsterAI monster in monsters)

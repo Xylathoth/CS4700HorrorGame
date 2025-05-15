@@ -22,12 +22,6 @@ public class LSD : BaseConsumable
         }
         UIManager.Instance.ShowEffectMessage("Round 3\r\nYou took LSD!");
 
-        //MonsterAI monster = FindObjectOfType<MonsterAI>();
-        //if (monster != null)
-        //{
-        //    monster.moveSpeed = 4f;
-        //    monster.respawnDelay = 3f;
-        //}
 
         MonsterAI[] monsters = FindObjectsOfType<MonsterAI>();
         foreach (MonsterAI monster in monsters)
