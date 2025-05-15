@@ -124,8 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jitterAmount: 15
   snapAngleRange: 90
-  snapIntervalMin: 3
-  snapIntervalMax: 5
+  snapIntervalMin: 5
+  snapIntervalMax: 6
 --- !u!1001 &2259997100870120877
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,6 +18,13 @@ public class Alcohol : BaseConsumable
 
         Debug.Log("Dizzy effect applied!");
         UIManager.Instance.ShowEffectMessage("Round 4\r\nYou drank Alcohol!");
+
+        MonsterAI[] monsters = FindObjectsOfType<MonsterAI>();
+        foreach (MonsterAI monster in monsters)
+        {
+            monster.moveSpeed = 5f;
+            monster.respawnDelay = 2f;
+        }
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)

@@ -17,11 +17,18 @@ public class MonsterAI : MonoBehaviour
     private bool isHidden = false;
     private int monsterLayerMask;
 
+    private bool isJumpscareAudioPlaying = false;
+    public AudioClip jumpscareClip;
+    public AudioClip deathClip;
+    private AudioSource audioSource;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         startPosition = transform.position;
         monsterLayerMask = LayerMask.GetMask("Monster");
+
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -46,10 +53,17 @@ public class MonsterAI : MonoBehaviour
             Debug.Log($"MonsterAI: In range ({dist:F2}), firing Attack trigger");
             animator.SetTrigger("Attack");
             attackReady = false;
+            PlayJumpscareAudio();
         }
         else if (dist > attackRange)
         {
             attackReady = true;
+
+            if (isJumpscareAudioPlaying)
+            {
+                audioSource.Stop();
+                isJumpscareAudioPlaying = false;
+            }
         }
 
         // then only check flashlight for despawn
@@ -59,12 +73,30 @@ public class MonsterAI : MonoBehaviour
         float halfAngle = flashlight.spotAngle * 0.5f;
         float angle = Vector3.Angle(flashlight.transform.forward, toMonster);
 
+        //if (toMonster.magnitude <= flashlight.range && angle <= halfAngle)
+        //    PlayDeathAudio(); // play death audio
+        //    StartCoroutine(HandleDespawn());
+
         if (toMonster.magnitude <= flashlight.range && angle <= halfAngle)
-            StartCoroutine(HandleDespawn());
+        {
+            // Check if the flashlight is directly hitting this monster
+            Ray ray = new Ray(flashlight.transform.position, toMonster.normalized);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, flashlight.range))
+            {
+                if (hit.collider != null && hit.collider.gameObject == gameObject)
+                {
+                    PlayDeathAudio();
+                    StartCoroutine(HandleDespawn());
+                }
+            }
+        }
+
     }
 
     IEnumerator HandleDespawn()
-    {
+    { 
         isHidden = true;
         var renderers = GetComponentsInChildren<Renderer>();
         var colliders = GetComponentsInChildren<Collider>();
@@ -75,6 +107,24 @@ public class MonsterAI : MonoBehaviour
         foreach (var r in renderers) r.enabled = true;
         foreach (var c in colliders) c.enabled = true;
         isHidden = false;
+    }
+
+    void PlayDeathAudio()
+    {
+        audioSource.loop = false;
+        audioSource.clip = deathClip;
+        audioSource.Play();
+    }
+
+    void PlayJumpscareAudio()
+    {
+        if (!isJumpscareAudioPlaying)
+        {
+            audioSource.clip = jumpscareClip;
+            audioSource.loop = true;
+            audioSource.Play();
+            isJumpscareAudioPlaying = true;
+        }
     }
 
 }
