@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
 
     public List<Round> rounds; // Set these in Inspector
 
-    private int currentRoundIndex = -1;
-    private GameObject currentConsumable;
+    public int currentRoundIndex = -1;
+    public GameObject currentConsumable;
     private IConsumableEffect currentEffect;
 
     private PlayerController playerController;
@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         mouseLook.enabled = false;
     }
 
+    Round round;
+
     public void StartNextRound()
     {
         currentRoundIndex++;
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Round round = rounds[currentRoundIndex];
+        round = rounds[currentRoundIndex];
         Debug.Log($"Starting Round {currentRoundIndex + 1}: {round.roundName}");
         HandleRoundEvents(currentRoundIndex);   // initiate round-specific logic
 
@@ -66,6 +68,14 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if (currentRoundIndex != 2)
+        {
+            SpawnDrug();
+        }
+    }
+
+    public void SpawnDrug()
+    {
         currentConsumable = Instantiate(round.consumablePrefab, round.spawnPoint.position, round.spawnPoint.rotation);
 
         // Initialize the consumable with the GameManager
@@ -73,6 +83,7 @@ public class GameManager : MonoBehaviour
         if (consumableScript != null)
         {
             consumableScript.Initialize(this);
+            Debug.Log("Drug spawned");
         }
     }
 

@@ -9,6 +9,11 @@ public class PlayerHealth : MonoBehaviour
 
     private GameManager gameManager;
 
+    private void Start()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();
+    }
+
     private void Update()
     {
 
