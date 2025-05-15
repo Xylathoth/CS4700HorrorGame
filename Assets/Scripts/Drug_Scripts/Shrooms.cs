@@ -11,7 +11,7 @@ public class Shrooms : BaseConsumable
 
     public override void ApplyEffect(PlayerController player, MouseLook look)
     {
-        UIManager.Instance.ShowEffectMessage("Round 5\r\nYou took Shrooms!");
+        UIManager.Instance.ShowEffectMessage("Round 5\r\nYou took Shrooms!\r\nForest Open!");
         look.isJittery = true;
         look.jitterStrength = jitterAmount;
 
@@ -24,8 +24,15 @@ public class Shrooms : BaseConsumable
 
         Debug.Log($"Jittery mouse look applied! Jitter strength: {jitterAmount}");
 
-        MonsterAI monster = FindObjectOfType<MonsterAI>();
-        if (monster != null)
+        //MonsterAI monster = FindObjectOfType<MonsterAI>();
+        //if (monster != null)
+        //{
+        //    monster.moveSpeed = 5f;
+        //    monster.respawnDelay = 999f;
+        //}
+
+        MonsterAI[] monsters = FindObjectsOfType<MonsterAI>();
+        foreach (MonsterAI monster in monsters)
         {
             monster.moveSpeed = 5f;
             monster.respawnDelay = 999f;

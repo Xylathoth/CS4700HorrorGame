@@ -10,14 +10,19 @@ public class Marijuana : BaseConsumable
         player.speed *= boostMultiplier;
         Debug.Log("slow applied!");
 
-        MonsterAI monster = FindObjectOfType<MonsterAI>();
-        if (monster != null)
+        //MonsterAI monster = FindObjectOfType<MonsterAI>();
+        //if (monster != null)
+        //{
+        //    monster.moveSpeed = 3f;
+        //    monster.respawnDelay = 4f;
+        //}
+
+        MonsterAI[] monsters = FindObjectsOfType<MonsterAI>();
+        foreach (MonsterAI monster in monsters)
         {
             monster.moveSpeed = 3f;
             monster.respawnDelay = 4f;
         }
-
-
     }
 
     public override void RemoveEffect(PlayerController player, MouseLook look)
