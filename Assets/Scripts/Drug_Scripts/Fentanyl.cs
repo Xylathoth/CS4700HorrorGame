@@ -8,18 +8,17 @@ public class CameraFlipConsumable : BaseConsumable
         look.isFlipped = true;
         Debug.Log("Camera flip applied (upside down).");
 
-        //MonsterAI monster = FindObjectOfType<MonsterAI>();
-        //if (monster != null)
-        //{
-        //    monster.moveSpeed = 8f;
-        //    monster.respawnDelay = 0f;
-        //}
 
         MonsterAI[] monsters = FindObjectsOfType<MonsterAI>();
         foreach (MonsterAI monster in monsters)
         {
-            monster.moveSpeed = 8f;
-            monster.respawnDelay = 0f;
+            monster.moveSpeed = 4f;
+            monster.respawnDelay = 5f;
+
+            if (monster.IsHidden())
+            {
+                monster.ForceRespawn();
+            }
         }
     }
 

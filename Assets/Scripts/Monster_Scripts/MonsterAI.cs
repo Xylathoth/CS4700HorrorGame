@@ -95,17 +95,23 @@ public class MonsterAI : MonoBehaviour
 
     }
 
-    IEnumerator HandleDespawn()
+    IEnumerator HandleDespawn(bool forceInstant = false)
     { 
         isHidden = true;
         var renderers = GetComponentsInChildren<Renderer>();
         var colliders = GetComponentsInChildren<Collider>();
+
         foreach (var r in renderers) r.enabled = false;
         foreach (var c in colliders) c.enabled = false;
+
+        float waitTime = forceInstant ? 0f : respawnDelay;
         yield return new WaitForSeconds(respawnDelay);
+
         transform.position = startPosition;
+
         foreach (var r in renderers) r.enabled = true;
         foreach (var c in colliders) c.enabled = true;
+
         isHidden = false;
     }
 
@@ -125,6 +131,17 @@ public class MonsterAI : MonoBehaviour
             audioSource.Play();
             isJumpscareAudioPlaying = true;
         }
+    }
+
+    public bool IsHidden()
+    {
+        return isHidden;
+    }
+
+    public void ForceRespawn()
+    {
+        StopAllCoroutines();
+        StartCoroutine(HandleDespawn(forceInstant: true));
     }
 
 }

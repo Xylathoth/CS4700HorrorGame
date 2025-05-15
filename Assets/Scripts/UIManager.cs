@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance; // singleton
 
     public TextMeshProUGUI effectMessageText;
-    public float messageDisplayTime = 2f;
+    public float messageDisplayTime = 2.5f;
 
     private void Awake()
     {
